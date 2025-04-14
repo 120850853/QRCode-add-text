@@ -1,0 +1,17 @@
+identity: # 工具供应商的基本信息
+  author: liu # 作者
+  name: qrcodewithtext # 名称，唯一，不允许和其他供应商重名
+  label: # 标签，用于前端展示
+    en_US: qrcodewithtext # 英文标签
+    zh_Hans: qrcodewithtext # 中文标签
+    pt_BR: qrcodewithtext
+  description: # 描述，用于前端展示
+    en_US: Add text to a QR Code image # 英文描述
+    zh_Hans: Add text to a QR Code image # 中文描述
+    pt_BR: Add text to a QR Code image
+  icon: icon.svg # 工具图标，需要放置在 _assets 文件夹下
+tools:
+  - tools/qrcodewithtext.yaml
+extra:
+  python:
+    source: provider/qrcodewithtext.py

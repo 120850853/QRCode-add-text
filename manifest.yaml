@@ -1,0 +1,42 @@
+version: 0.0.1
+type: plugin
+author: liu
+name: qrcodewithtext
+label:
+  en_US: qrcodewithtext
+  ja_JP: qrcodewithtext
+  zh_Hans: qrcodewithtext
+  pt_BR: qrcodewithtext
+description:
+  en_US: Add text to a QR Code image
+  ja_JP: Add text to a QR Code image
+  zh_Hans: Add text to a QR Code image
+  pt_BR: Add text to a QR Code image
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    endpoint:
+      enabled: true
+    app:
+      enabled: true
+    storage:
+      enabled: true
+      size: 1048576
+plugins:
+  tools:
+    - provider/qrcodewithtext.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2025-04-11T18:14:41.370569+08:00
+privacy: PRIVACY.md
+verified: false

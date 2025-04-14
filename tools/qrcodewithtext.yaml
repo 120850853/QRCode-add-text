@@ -1,0 +1,43 @@
+identity:
+  name: qrcodewithtext
+  author: liu
+  label:
+    en_US: qrcodewithtext
+    zh_Hans: qrcodewithtext
+    pt_BR: qrcodewithtext
+description:
+  human:
+    en_US: Add text to a QR Code image
+    zh_Hans: 在二维码下方增加文字说明
+    pt_BR: Add text to a QR Code image
+  llm: Add text to a QR Code image
+parameters:
+  - name: image
+    type: file
+    required: true
+    label:
+      en_US: a QR Code image
+      zh_Hans: 二维码图片
+      pt_BR: a QR Code image
+    human_description:
+      en_US: Add text to a QR Code image
+      zh_Hans: 在二维码下方增加文字说明
+      pt_BR: Add text to a QR Code image
+    llm_description: Add text to a QR Code image
+    form: llm
+  - name: text
+    type: string
+    required: true
+    label:
+      en_US: description a QR Code image
+      zh_Hans: 描述二维码图片
+      pt_BR: description a QR Code image
+    human_description:
+      en_US: Add text to a QR Code image
+      zh_Hans: Add text to a QR Code image
+      pt_BR: Add text to a QR Code image
+    llm_description: Add text to a QR Code image
+    form: llm    
+extra:
+  python:
+    source: tools/qrcodewithtext.py
