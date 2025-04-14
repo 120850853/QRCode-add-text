@@ -12,7 +12,7 @@ description:
     pt_BR: Add text to a QR Code image
   llm: Add text to a QR Code image
 parameters:
-  - name: image
+  - name: input_image
     type: file
     required: true
     label:
@@ -25,12 +25,12 @@ parameters:
       pt_BR: Add text to a QR Code image
     llm_description: Add text to a QR Code image
     form: llm
-  - name: text
+  - name: image_description
     type: string
     required: true
     label:
       en_US: description a QR Code image
-      zh_Hans: 描述二维码图片
+      zh_Hans: 描述二维码功能
       pt_BR: description a QR Code image
     human_description:
       en_US: Add text to a QR Code image

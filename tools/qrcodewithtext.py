@@ -5,10 +5,8 @@ from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 from dify_plugin.file.file import File
 
-import requests
 import cv2
 import numpy as np
-import base64
 
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
@@ -16,21 +14,18 @@ from io import BytesIO
 class QrcodewithtextTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         #print("QrcodewithtextTool invoked")
-        print(tool_parameters)
+        #print(tool_parameters)
 
-        #获得tool_parameters中的url
-        file_url = tool_parameters["image"].url
-        text = tool_parameters["text"]
+        # 定义要绘制的文字
+        text: str = tool_parameters.get("image_description", "")
+        #获得增加说明的图片
+        input_image: File = tool_parameters.get("input_image", "")
+        if not input_image or not isinstance(input_image, File):
+            raise ValueError("Not a valid file for input input_image")
+        
+        input_image_bytes = input_image.blob
 
-        image_url = f"http://localhost{file_url}"
-
-        print("image_url",image_url)
-
-
-        # 下载图片
-        response = requests.get(image_url)
-        response.raise_for_status()
-        image_array = np.frombuffer(response.content, np.uint8)
+        image_array = np.frombuffer(input_image_bytes, np.uint8)
         image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
 
         # 将 OpenCV 图像转换为 Pillow 图像
@@ -40,6 +35,7 @@ class QrcodewithtextTool(Tool):
         new_image[:image_height, :] = image
         pil_image = Image.fromarray(new_image)
 
+
         # 加载支持汉字的字体文件
         import platform
 
@@ -47,9 +43,10 @@ class QrcodewithtextTool(Tool):
         if platform.system() == "Darwin":  # macOS
             font_path = "/System/Library/Fonts/Supplemental/Songti.ttc"
         elif platform.system() == "Linux":  # Ubuntu
-            font_path = "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"
+            font_path = "/app/storage/assets/Songti.ttc"
         else:
             raise OSError("Unsupported operating system")
+
         try:
             font = ImageFont.truetype(font_path, size=32)
         except OSError as e:
@@ -57,6 +54,7 @@ class QrcodewithtextTool(Tool):
 
         # 绘制文字
         draw = ImageDraw.Draw(pil_image)
+        
         # 计算文字边框信息
         text_bbox = draw.textbbox((0, 0), text, font=font)
         text_width = text_bbox[2] - text_bbox[0]
@@ -67,7 +65,10 @@ class QrcodewithtextTool(Tool):
 
         # 保存图片到文件
         buffered = BytesIO()
-        pil_image.save(buffered, format="PNG")
+        try:
+            pil_image.save(buffered, format="PNG")
+        except Exception as e:
+            raise RuntimeError(f"Failed to save image to buffer: {e}")
         buffered.seek(0)
         image_bytes = buffered.read()
 
