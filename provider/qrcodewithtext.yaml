@@ -1,5 +1,5 @@
 identity: # 工具供应商的基本信息
-  author: liu # 作者
+  author: 120850853 # 作者
   name: qrcodewithtext # 名称，唯一，不允许和其他供应商重名
   label: # 标签，用于前端展示
     en_US: qrcodewithtext # 英文标签
