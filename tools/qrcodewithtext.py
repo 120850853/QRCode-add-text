@@ -35,22 +35,17 @@ class QrcodewithtextTool(Tool):
         new_image[:image_height, :] = image
         pil_image = Image.fromarray(new_image)
 
+        import os
+        # 获取当前文件的上一层目录
+        parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+        font_path = parent_dir + "/_assets/SourceHanSansCN.otf"
 
         # 加载支持汉字的字体文件
-        import platform
-
-        # 根据操作系统选择字体路径
-        if platform.system() == "Darwin":  # macOS
-            font_path = "/System/Library/Fonts/Supplemental/Songti.ttc"
-        elif platform.system() == "Linux":  # Ubuntu
-            font_path = "/app/storage/assets/Songti.ttc"
-        else:
-            raise OSError("Unsupported operating system")
-
         try:
             font = ImageFont.truetype(font_path, size=32)
         except OSError as e:
-            raise OSError(f"Failed to load font from path: {font_path}. Ensure the font file exists and the path is correct. Original error: {e}")
+            raise OSError(f"Failed to load font from path: {font_path}. 当前文件路径: {__file__},Ensure the font file exists and the path is correct. Original error: {e}")
 
         # 绘制文字
         draw = ImageDraw.Draw(pil_image)

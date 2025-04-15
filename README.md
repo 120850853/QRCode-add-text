@@ -12,5 +12,3 @@
 FILES_URL=http://your_domain
 
 否则，会出现`Request URL is missing an 'http://' or 'https://'protocol`的错误提示
-
-2. 把字体放到`./volumes/plugin_daemon/assets/`文件夹下。因为字体太大超过50M，无法打包，所以放到`./volumes/plugin_daemon/assets/`文件夹下。

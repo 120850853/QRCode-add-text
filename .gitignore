@@ -169,3 +169,7 @@ cython_debug/
 
 # Vscode
 .vscode/
+tools/__pycache__/
+provider/__pycache__/
+
+.DS_Store
