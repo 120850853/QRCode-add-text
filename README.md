@@ -5,10 +5,11 @@
 **Type:** tool
 
 ### Description
-在二维码图片，下方添加文字描述
+
+setting image and text
+[![](https://github.com/120850853/QRCode-add-text/blob/main/qrcode-1.png)]
+[![](https://github.com/120850853/QRCode-add-text/blob/main/qrcode-2.png)]
+[![](https://github.com/120850853/QRCode-add-text/blob/main/qrcode-3.png)]
 
 ## Usage
-1. 在配置文件中，要有如下配置
-FILES_URL=http://your_domain
-
-否则，会出现`Request URL is missing an 'http://' or 'https://'protocol`的错误提示
+在配置文件中，要有如下配置`FILES_URL=http://your_domain`,否则，会出现`Request URL is missing an 'http://' or 'https://'protocol`的错误提示
