@@ -1,6 +1,6 @@
-version: 0.0.1
+version: 0.0.3
 type: plugin
-author: 120850853
+author: "120850853"
 name: qrcodewithtext
 label:
   en_US: qrcodewithtext
